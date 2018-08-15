@@ -9,7 +9,7 @@ do ()->
     preserveAspectRatio: "preserveAspectRatio"
     startOffset: "startOffset"
     viewBox: "viewBox"
-    # common case-sensitive attr names should be listed here as needed — see svg.cofee for reference
+    # common case-sensitive attr names should be listed here as needed — see svg.cofee in https://github.com/cdig/svg for reference
 
   propNames =
     childNodes: true
