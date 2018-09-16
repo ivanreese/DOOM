@@ -34,6 +34,7 @@ do ()->
     fontFamily: true
     fontWeight: true
     height: "html"
+    left: true
     letterSpacing: true
     lineHeight: true
     maxHeight: true
@@ -56,6 +57,7 @@ do ()->
     paddingBottom: true
     pointerEvents: true
     textDecoration: true
+    top: true
     transform: "html"
     transition: true
     visibility: true
