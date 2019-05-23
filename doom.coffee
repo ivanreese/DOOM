@@ -56,6 +56,7 @@ do ()->
     paddingRight: true
     paddingBottom: true
     pointerEvents: true
+    position: true
     textDecoration: true
     top: true
     transform: "html"
