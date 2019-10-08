@@ -1,10 +1,10 @@
 # DOOM
 
-DOOM is a high-ish performance DOM manipulation tool with a declarative API intended for use in procedural code.
+DOOM is a high-ish performance DOM manipulation tool with a declarative API intended for use in procedural or functional code. Use it as a first level above the raw DOM, below your bespoke custom HTML component framework or game engine SVG renderer.
 
 It's named DOOM so that you get to have the word "DOOM" in your code.
 
-To make good use of DOOM, you already need to be familiar with how the DOM works. This library doesn't introduce any abstractions, it just offers some caching and a more concise syntax optimized for CoffeeScript.
+To make good use of DOOM, you already need to be fairly familiar with how the DOM works. This library doesn't introduce any abstractions, it just offers some caching and a more concise syntax optimized for CoffeeScript.
 
 ### Basic Usage
 
