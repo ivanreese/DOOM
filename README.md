@@ -29,7 +29,7 @@ How does DOOM determine whether to set something as a property, an attribute, or
 
 #### Reading
 
-Call `DOOM` with an element and the name of a DOM property, HTML attribute, or inline style.
+Call `DOOM` with an element and the name of a DOM property, HTML/SVG attribute, or inline style.
 
 ```coffee
 console.log DOOM elm, "value" # property
@@ -60,13 +60,13 @@ DOOM.empty someParentElm # Removes all children
 
 ### Special Rules for Keys
 
-* For HTML attributes, `lowerCamelCase` is normalized into `kebab-case`.
+* For HTML/SVG attributes, `lowerCamelCase` is normalized into `kebab-case`.
 * An exception to the above is the list of `attrNames` in the code — these are treated as case-sensitive and are not normalized. This is essential for SVG, which uses a handful of case-sensitive attribute names.
 * If you need to use a name that isn't a legal key literal, supply it as a string key: `DOOM elm, "-webkit-filter": "blur(12px)"`
 
 ### Special Rules for Values
 
-* When setting an HTML attribute, use an empty string to set a boolean attribute: `DOOM elm, disabled: ""`
+* When setting an HTML/SVG attribute, use an empty string to set a boolean attribute: `DOOM elm, disabled: ""`
 * If you want to remove an attribute, pass null: `DOOM elm, disabled: null`.
 * `undefined` values are ignored.
 
