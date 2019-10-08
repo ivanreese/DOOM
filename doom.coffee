@@ -30,7 +30,7 @@ do ()->
     borderRadius: true
     color: true
     display: true
-    fontSize: "html" # Only treat as a style if this is an HTML elm
+    fontSize: "html" # Only treat as a style if this is an HTML elm. SVG elms will treat this as an attribute.
     fontFamily: true
     fontWeight: true
     height: "html"
@@ -64,7 +64,8 @@ do ()->
     visibility: true
     width: "html"
     zIndex: true
-
+  
+  # When creating an element, SVG elements require a special namespace, so we use this list to know whether a tag name is for an SVG or not
   svgElms =
     circle: true
     clipPath: true
@@ -144,16 +145,16 @@ do ()->
     return if results.length is 1 then results[0] else results
 
 
-  DOOM.create = (type, parent, query)->
+  DOOM.create = (type, parent, opts)->
     if svgElms[type]?
       elm = document.createElementNS svgNS, type
       if type is "svg"
-        (query ?= {}).xmlns = svgNS
+        (opts ?= {}).xmlns = svgNS
       else
         elm._DOOM_SVG = true
     else
       elm = document.createElement type
-    DOOM elm, query if query?
+    DOOM elm, opts if opts?
     DOOM.append parent, elm if parent?
     return elm
 
