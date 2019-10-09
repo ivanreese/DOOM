@@ -41,7 +41,7 @@ DOOM will return whatever value DOOM has in its cache — or (as a fallback) wha
 
 ### Element Manipulation
 
-DOOM also offers a handful of functions for manipulation the DOM hierarchy.
+DOOM also offers a handful of functions for manipulating the DOM hierarchy.
 
 You can create a new DOM element by calling `DOOM.create` with the tag name, (optional) parent element, and (optional) object of props/attrs/styles to set on the new element.
 
