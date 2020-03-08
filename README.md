@@ -12,13 +12,14 @@ DOOM attaches itself to the window, to the current `this` wherever it's loaded (
 
 #### Writing
 
-Call the `DOOM` function with an element, and an object where keys are the name of a property, attribute, or style and the values are the desired value.
+Call the `DOOM` function with an element, and an object where keys are the name of a property, attribute, style, or event and the values are the desired value.
 
 ```coffee
 DOOM elm,
   innerHTML: "<h1>ERROR</h1>" # property
   myCustomAttr: "active" # attribute
   color: "red" # style
+  click: (e)-> DOOM.remove e.target # event
 ```
 
 Values you supply are cached, and repeated writes with the same value are ignored. This is very helpful if you prefer working in an immediate-mode style, as there's normally a fairly high cost to touching the DOM even if nothing will change as a result. This is especially true of SVG.

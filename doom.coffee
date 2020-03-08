@@ -11,6 +11,22 @@ do ()->
     viewBox: "viewBox"
     # common case-sensitive attr names should be listed here as needed — see svg.cofee in https://github.com/cdig/svg for reference
 
+  eventNames =
+    blur: true
+    change: true
+    click: true
+    focus: true
+    input: true
+    keydown: true
+    keypress: true
+    keyup: true
+    mousedown: true
+    mouseenter: true
+    mouseleave: true
+    mousemove: true
+    mouseup: true
+    scroll: true
+
   propNames =
     childNodes: true
     firstChild: true
@@ -99,6 +115,20 @@ do ()->
       cache = elm._HTML_style
       isCached = cache[k] is v
       elm.style[k] = cache[k] = v if not isCached
+    else if eventNames[k]?
+      cache = elm._HTML_event
+      return if cache[k] is v
+      if cache[k]?
+        throw "DOOM experimentally imposes a limit of one handler per event per object."
+        # If we want to add multiple handlers for the same event to an object,
+        # we need to decide how that interacts with passing null to remove events.
+        # Should null remove all events? Probably. How do we track that? Keep an array of refs to handlers?
+        # That seems slow and error prone.
+      cache[k] = v
+      if v?
+        elm.addEventListener k, v
+      else
+        elm.removeEventListener k, v
     else
       cache = elm._HTML_attr
       return if cache[k] is v
