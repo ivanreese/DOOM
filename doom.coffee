@@ -98,25 +98,25 @@ do ()->
 
   read = (elm, k)->
     if propNames[k]?
-      elm._HTML_prop[k] ?= elm[k]
+      elm._DOOM_prop[k] ?= elm[k]
     else if styleNames[k]?
-      elm._HTML_style[k] ?= elm.style[k]
+      elm._DOOM_style[k] ?= elm.style[k]
     else
       k = attrNames[k] ?= k.replace(/([A-Z])/g,"-$1").toLowerCase() # Normalize camelCase into kebab-case
-      elm._HTML_attr[k] ?= elm.getAttribute k
+      elm._DOOM_attr[k] ?= elm.getAttribute k
 
 
   write = (elm, k, v)->
     if propNames[k]?
-      cache = elm._HTML_prop
+      cache = elm._DOOM_prop
       isCached = cache[k] is v
       elm[k] = cache[k] = v if not isCached
     else if styleNames[k]? and !(elm._DOOM_SVG and styleNames[k] is "html")
-      cache = elm._HTML_style
+      cache = elm._DOOM_style
       isCached = cache[k] is v
       elm.style[k] = cache[k] = v if not isCached
     else if eventNames[k]?
-      cache = elm._HTML_event
+      cache = elm._DOOM_event
       return if cache[k] is v
       if cache[k]?
         throw "DOOM experimentally imposes a limit of one handler per event per object."
@@ -130,7 +130,7 @@ do ()->
       else
         elm.removeEventListener k, v
     else
-      cache = elm._HTML_attr
+      cache = elm._DOOM_attr
       return if cache[k] is v
       cache[k] = v
       ns = if k is "xlink:href" then xlinkNS else null # Grab the namespace if needed
@@ -149,9 +149,9 @@ do ()->
 
   act = (elm, opts)->
     # Initialize the caches
-    elm._HTML_attr ?= {}
-    elm._HTML_prop ?= {}
-    elm._HTML_style ?= {}
+    elm._DOOM_attr ?= {}
+    elm._DOOM_prop ?= {}
+    elm._DOOM_style ?= {}
 
     if typeof opts is "object"
       for k, v of opts
