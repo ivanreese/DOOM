@@ -64,7 +64,7 @@ do ()->
     visibility: true
     width: "html"
     zIndex: true
-  
+
   # When creating an element, SVG elements require a special namespace, so we use this list to know whether a tag name is for an SVG or not
   svgElms =
     circle: true
@@ -139,7 +139,7 @@ do ()->
   # Or it can be a string prop/attr/style to read from the elm(s), in which case we return the value(s).
   DOOM = (elms, opts)->
     elms = [elms] unless typeof elms is "array"
-    throw new Error "DOOM was called with a null element" unless elm? for elm in elms
+    (throw new Error "DOOM was called with a null element" unless elm?) for elm in elms
     throw new Error "DOOM was called with null options" unless opts?
     results = (act elm, opts for elm in elms)
     return if results.length is 1 then results[0] else results
