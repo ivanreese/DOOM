@@ -172,9 +172,13 @@ do ()->
     return child
 
 
-  DOOM.remove = (parent, child)->
-    parent.removeChild child if child.parentNode is parent
-    return child
+  DOOM.remove = (elm, child)->
+    if child?
+      elm.removeChild child if child.parentNode is elm
+      return child
+    else
+      elm.remove()
+      return elm
 
 
   DOOM.empty = (elm)->

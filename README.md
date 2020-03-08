@@ -55,6 +55,7 @@ There's also the old standbys from the JQuery era...
 DOOM.append someParentElm, adoptedChild # Adds a child to the bottom
 DOOM.prepend someParentElm, precociousChild # Adds a child to the top
 DOOM.remove someParentElm, offToCollege # Removes a child
+DOOM.remove someElm # Removes this element
 DOOM.empty someParentElm # Removes all children
 ```
 
