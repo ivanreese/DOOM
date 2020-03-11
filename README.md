@@ -19,7 +19,7 @@ DOOM elm,
   innerHTML: "<h1>ERROR</h1>" # property
   myCustomAttr: "active" # attribute
   color: "red" # style
-  click: (e)-> DOOM.remove e.target # event
+  click: (e)-> DOOM.remove e.currentTarget # event
 ```
 
 Values you supply are cached, and repeated writes with the same value are ignored. This is very helpful if you prefer working in an immediate-mode style, as there's normally a fairly high cost to touching the DOM even if nothing will change as a result. This is especially true of SVG.
