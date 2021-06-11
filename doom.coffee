@@ -150,6 +150,7 @@ do ()->
   act = (elm, opts)->
     # Initialize the caches
     elm._DOOM_attr ?= {}
+    elm._DOOM_event ?= {}
     elm._DOOM_prop ?= {}
     elm._DOOM_style ?= {}
 
