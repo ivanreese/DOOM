@@ -86,13 +86,23 @@ do ()->
     circle: true
     clipPath: true
     defs: true
+    ellipse: true
     g: true
     image: true
+    line: true
+    linearGradient: true
     mask: true
     path: true
+    polygon: true
+    polyline: true
+    radialGradient: true
     rect: true
+    stop: true
     svg: true
+    symbol: true
     text: true
+    textPath: true
+    tspan: true
     use: true
 
 
