@@ -108,12 +108,18 @@ do ()->
 
   read = (elm, k)->
     if propNames[k]?
-      elm._DOOM_prop[k] ?= elm[k]
+      cache = elm._DOOM_prop
+      cache[k] = elm[k] if cache[k] is undefined
+      cache[k]
     else if styleNames[k]?
-      elm._DOOM_style[k] ?= elm.style[k]
+      cache = elm._DOOM_style
+      cache[k] = elm.style[k] if cache[k] is undefined
+      cache[k]
     else
       k = attrNames[k] ?= k.replace(/([A-Z])/g,"-$1").toLowerCase() # Normalize camelCase into kebab-case
-      elm._DOOM_attr[k] ?= elm.getAttribute k
+      cache = elm._DOOM_attr
+      cache[k] = elm.getAttribute k if cache[k] is undefined
+      cache[k]
 
 
   write = (elm, k, v)->
@@ -140,11 +146,11 @@ do ()->
       else
         elm.removeEventListener k, v
     else
+      k = attrNames[k] ?= k.replace(/([A-Z])/g,"-$1").toLowerCase() # Normalize camelCase into kebab-case
       cache = elm._DOOM_attr
       return if cache[k] is v
       cache[k] = v
       ns = if k is "xlink:href" then xlinkNS else null # Grab the namespace if needed
-      k = attrNames[k] ?= k.replace(/([A-Z])/g,"-$1").toLowerCase() # Normalize camelCase into kebab-case
       if ns?
         if v? # check for null
           elm.setAttributeNS ns, k, v # set DOM attribute
@@ -167,7 +173,6 @@ do ()->
     if typeof opts is "object"
       for k, v of opts
         write elm, k, v
-        null
       return elm
     else if typeof opts is "string"
       return read elm, opts
